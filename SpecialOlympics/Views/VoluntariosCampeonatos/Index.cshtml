@@ -1,0 +1,47 @@
+﻿@model IEnumerable<SpecialOlympics.Models.VoluntarioCampeonato>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdVoluntario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdCampeonato)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Funcion)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdVoluntario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCampeonato)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Funcion)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdVoluntarioCampeonato">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdVoluntarioCampeonato">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdVoluntarioCampeonato">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

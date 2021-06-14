@@ -1,0 +1,155 @@
+﻿@model IEnumerable<SpecialOlympics.Models.Voluntario>
+
+@{
+    ViewData["Title"] = "Voluntarios";
+}
+
+
+<h1>Lista completa de Voluntarios</h1>
+
+<p>
+    <a class="btn btn-info" asp-action="Create">Nuevo voluntario</a>
+</p>
+<div style="overflow-x: auto;">
+    <table class="table table-striped table-bordered nowrap partialDataTable">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProfileImagePath)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Apellido1)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Apellido2)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DNI)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Telefono1)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Telefono2)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TelefonoEmergencia)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DireccionCompleta)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Poblacion)
+                </th>
+                @*<th>
+                        @Html.DisplayNameFor(model => model.Provincia)
+                    </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.CodigoPostal)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FechaNacimiento)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FechaAlta)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsAlergico)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.DescripcionAlergias)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsActivo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Observaciones)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @if (string.IsNullOrEmpty(item.ProfileImagePath))
+                        {
+                            <img class="profileImg" src="~/images/UsuarioDefault.png" />
+                        }
+                        else
+                        {
+                            <img class="profileImg" src="~/images/@item.ProfileImagePath" />
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Apellido1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Apellido2)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DNI)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Telefono1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Telefono2)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TelefonoEmergencia)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DireccionCompleta)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Poblacion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CodigoPostal)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaNacimiento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaAlta)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsAlergico)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DescripcionAlergias)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsActivo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Observaciones)
+                    </td>
+                    <td>
+                        <a class="icon iconInfo" asp-action="Edit" asp-route-id="@item.IdVoluntario"><i class="fas fa-pen-square"></i></a>
+                        <a class="icon iconDanger" asp-action="Delete" asp-route-id="@item.IdVoluntario"><i class="fas fa-minus-square"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("PartialDataTable");}
+}

@@ -1,0 +1,108 @@
+﻿@inject SignInManager<IdentityUser> signInManager;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SpecialOlympics</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-md navbar-toggleable-md navbar-dark bg-danger border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index"><img style="width: 125px; height: 38px;" src="~/images/logoHorizontal2.png" /></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-md-inline-flex flex-md-row-reverse">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-white dropdown-toggle" href="#"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Voluntarios</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" asp-controller="Voluntarios" asp-action="Create">Nuevo Voluntario</a>
+                                <a class="dropdown-item" asp-controller="Voluntarios" asp-action="Index">Listado voluntarios</a>
+                                <a class="dropdown-item" asp-controller="Voluntarios" asp-action="Details">Listado detallado</a>
+                            </div>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-white dropdown-toggle" href="#"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Entrenamientos</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" asp-controller="Entrenamientos" asp-action="Create">Nuevo Entrenamiento</a>
+                                <a class="dropdown-item" asp-controller="Entrenamientos" asp-action="Index">Listado Entrenamientos</a>
+                            </div>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-white dropdown-toggle" href="#"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Campeonatos</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" asp-controller="Campeonatos" asp-action="Create">Nuevo Campeonato</a>
+                                <a class="dropdown-item" asp-controller="Campeonatos" asp-action="Index">Listado Campeonatos</a>
+                            </div>
+                        </li>
+
+                        @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administrar</a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" asp-controller="Administration" asp-action="ListUsers">Usuarios</a>
+                                    <a class="dropdown-item" asp-controller="Administration" asp-action="ListRoles">Roles</a>
+                                </div>
+                            </li>
+                        }
+
+                        @if (signInManager.IsSignedIn(User))
+                        {
+                            <li class="nav-item">
+                                <form method="post" asp-action="LogOut" asp-controller="Account">
+                                    <button class="btn btn-danger" type="submit">Cerrar sesión</button>
+                                </form>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="" asp-controller="Account" asp-action="Register">Registrarse</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="" asp-controller="Account" asp-action="LogIn">Login</a>
+                            </li>
+                        }
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2020 - SpecialOlympics - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

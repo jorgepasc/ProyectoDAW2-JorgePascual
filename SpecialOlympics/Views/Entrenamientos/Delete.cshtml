@@ -1,0 +1,53 @@
+﻿@model SpecialOlympics.Models.Entrenamiento
+
+@{
+    ViewData["Title"] = "Borrar entrenamiento";
+}
+
+<h3>Confirme el borrado del entrenamiento</h3>
+<div>
+    <h4>Entrenamiento</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ubicacion)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ubicacion)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FechaInicio)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FechaInicio)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Observaciones)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Observaciones)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="IdEntrenamiento" />
+        <span id="confirmDeleteSpan_@Model.IdEntrenamiento" style="display:none">
+            <span>¿Está seguro de que desea borrar este entrenamiento?</span>
+            <button type="submit" class="btn btn-danger">Borrar</button>
+            <a href="#" class="btn btn-primary"
+               onclick="confirmDelete('@Model.IdEntrenamiento', false)">Cancelar</a>
+        </span>
+
+        <span id="deleteSpan_@Model.IdEntrenamiento">
+            <a href="#" class="btn btn-danger"
+               onclick="confirmDelete('@Model.IdEntrenamiento', true)">Borrar</a>
+        </span>
+        <a class="btn btn-primary" asp-action="Index">Volver</a>
+    </form>
+</div>

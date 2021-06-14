@@ -1,0 +1,147 @@
+﻿@model SpecialOlympics.Models.Voluntario
+
+@{
+    ViewData["Title"] = "Borrar voluntario";
+    //string imgSrc = Model.Foto is null ? @"../../images/UsuarioDefault.png" : $"data:image/png;base64,{Convert.ToBase64String(Model.Foto)}";
+}
+
+<h3>Confirme el borrado del voluntario</h3>
+<div>
+    <h4>Voluntarios</h4>
+    <hr />
+    <img src="~/images/@Model.ProfileImagePath" alt="Foto de perfil " class="col-sm-5 col-lg-4 img-fluid img-thumbnail" />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Apellido1)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Apellido1)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Apellido2)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Apellido2)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DNI)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DNI)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Telefono1)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Telefono1)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DireccionCompleta)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DireccionCompleta)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Poblacion)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Poblacion)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Provincia)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Provincia)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CodigoPostal)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CodigoPostal)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FechaNacimiento)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FechaNacimiento)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FechaAlta)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FechaAlta)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Telefono2)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Telefono2)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TelefonoEmergencia)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TelefonoEmergencia)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IsAlergico)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IsAlergico)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DescripcionAlergias)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DescripcionAlergias)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IsActivo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IsActivo)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Observaciones)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Observaciones)
+        </dd>
+        <dt class="col-sm-2">Documentos</dt>
+        @if (!string.IsNullOrEmpty(Model.RutaDocumento1))
+        {
+            <dd class="col-sm-10">
+                <img style="max-width: 3em;" src="~/images/PDFIcon.png" alt="PDF" /> @*class="col-md-2"*@
+                <a class="col-md-10" href="~/Uploads/@Model.RutaDocumento1" target="_blank">@Model.RutaDocumento1.Substring(8, Model.RutaDocumento1.Length - 8)</a>
+            </dd>
+        }
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="IdVoluntario" />
+        <span id="confirmDeleteSpan_@Model.IdVoluntario" style="display:none">
+            <span>¿Está seguro de que desea borrar este voluntario?</span>
+            <button type="submit" class="btn btn-danger">Borrar</button>
+            <a href="#" class="btn btn-primary"
+               onclick="confirmDelete('@Model.IdVoluntario', false)">Cancelar</a>
+        </span>
+
+        <span id="deleteSpan_@Model.IdVoluntario">
+            <a href="#" class="btn btn-danger"
+               onclick="confirmDelete('@Model.IdVoluntario', true)">Borrar</a>
+        </span>
+        <a class="btn btn-primary" asp-action="Index">Volver</a>
+    </form>
+</div>

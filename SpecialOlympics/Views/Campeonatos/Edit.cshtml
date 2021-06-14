@@ -1,0 +1,261 @@
+﻿@model SpecialOlympics.Models.ViewModels.Campeonatos.CampeonatoEditViewModel
+
+@{
+    ViewData["Title"] = "Editar Campeonato";
+}
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{await Html.RenderPartialAsync("PartialDataTable");}
+}
+
+<h1>Editar campeonato</h1>
+
+<div id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="card">
+        <h5 class="card-header bg-danger" role="tab" id="headingOne">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="d-block collapsableLink">
+                Datos del campeonato <i class="fa fa-chevron-up pull-right float-right"></i>
+            </a>
+        </h5>
+        <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+            <div class="card-body">
+
+                <div class="col-md-12">
+                    <form asp-action="Edit">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="Campeonato.IdCampeonato" />
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label asp-for="Campeonato.Nombre" class="control-label"></label>
+                                <input asp-for="Campeonato.Nombre" class="form-control" />
+                                <span asp-validation-for="Campeonato.Nombre" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label asp-for="Campeonato.Ubicacion" class="control-label"></label>
+                                <input asp-for="Campeonato.Ubicacion" class="form-control" />
+                                <span asp-validation-for="Campeonato.Ubicacion" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label asp-for="Campeonato.FechaInicio" class="control-label"></label>
+                                <input asp-for="Campeonato.FechaInicio" class="form-control" />
+                                <span asp-validation-for="Campeonato.FechaInicio" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label asp-for="Campeonato.FechaFin" class="control-label"></label>
+                                <input asp-for="Campeonato.FechaFin" class="form-control" />
+                                <span asp-validation-for="Campeonato.FechaFin" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Guardar" class="btn btn-primary" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h5 class="card-header bg-danger" role="tab" id="headingTwo">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" class="d-block collapsableLink">
+                Voluntarios en el campeonato <i class="fa fa-chevron-up pull-right float-right"></i>
+            </a>
+        </h5>
+        <div id="collapseTwo" class="collapse show" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="card-body">
+                <form id="formDeleteVoluntarios" asp-controller="VoluntariosCampeonatos" asp-action="DeleteMulti">
+                    <input type="hidden" id="listIdsVoluntariosDelete" name="idsFormDelete" value="" />
+                    <div style="overflow-x: auto;">
+                        <table id="tableVoluntariosDelete" class="table table-striped table-bordered partialDataTableCheckbox">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @* TODO: Reducir anchura encabezado *@
+                                        @Html.DisplayNameFor(model => Model.VoluntariosFromCampeonato[0].IdVoluntario)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => Model.VoluntariosFromCampeonato[0].Nombre)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => Model.VoluntariosFromCampeonato[0].Apellido1)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => Model.VoluntariosFromCampeonato[0].Apellido2)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => Model.VoluntariosFromCampeonato[0].Telefono1)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => Model.VoluntariosFromCampeonato[0].Email)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => Model.VoluntariosFromCampeonato[0].Funcion)
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var voluntario in Model.VoluntariosFromCampeonato)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(model => voluntario.IdVoluntarioActividad)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => voluntario.Nombre)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => voluntario.Apellido1)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => voluntario.Apellido2)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => voluntario.Telefono1)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => voluntario.Email)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => voluntario.Funcion)
+                                        </td>
+                                        <td>
+                                            <a class="icon iconInfo" asp-controller="VoluntariosCampeonatos" asp-action="Edit" asp-route-id="@voluntario.IdVoluntarioActividad"><i class="fas fa-pen-square"></i></a>
+                                            <a class="icon iconDanger" asp-controller="VoluntariosCampeonatos" asp-action="Delete" asp-route-id="@voluntario.IdVoluntarioActividad"><i class="fas fa-minus-square"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <br />
+                    <input type="button" id="submitDelete" value="Eliminar voluntarios del Campeonato" class="btn btn-outline-primary" />
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <h5 class="card-header bg-danger" role="tab" id="headingThree">
+            <a class="d-block collapsableLink" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Voluntarios disponibles<i class="fa fa-chevron-up pull-right float-right"></i>
+            </a>
+        </h5>
+        <div id="collapseThree" class="collapse show" role="tabpanel" aria-labelledby="headingThree">
+            <div class="card-body">
+                <form id="formAddVoluntarios" asp-controller="VoluntariosCampeonatos" asp-action="Create">
+                    <input type="hidden" id="listIdsVoluntariosAdd" name="idsFormAdd" value="" />
+                    <div style="overflow-x: auto;">
+                        <table id="tableVoluntariosAdd" class="table table-striped table-bordered partialDataTableCheckbox">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => Model.VoluntariosDisponibles[0].IdVoluntario)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => Model.VoluntariosDisponibles[0].Nombre)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => Model.VoluntariosDisponibles[0].Apellido1)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => Model.VoluntariosDisponibles[0].Apellido2)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => Model.VoluntariosDisponibles[0].Telefono1)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => Model.VoluntariosDisponibles[0].Email)
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var voluntario in Model.VoluntariosDisponibles)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(model => voluntario.IdVoluntario)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => voluntario.Nombre)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => voluntario.Apellido1)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => voluntario.Apellido2)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => voluntario.Telefono1)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => voluntario.Email)
+                                        </td>
+                                        <td>
+                                            <a class="icon iconInfo" asp-controller="Voluntarios" asp-action="Edit" asp-route-id="@voluntario.IdVoluntario"><i class="fas fa-pen-square"></i></a>
+                                            <a class="icon iconDanger" asp-controller="Voluntarios" asp-action="Delete" asp-route-id="@voluntario.IdVoluntario"><i class="fas fa-minus-square"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <br />
+                    <input type="button" id="submitAdd" value="Añadir voluntarios a Campeonato" class="btn btn-outline-primary" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<div>
+    <a class="btn btn-primary" asp-action="Index">Volver</a>
+</div>
+
+<script defer>
+    //TODO: Esto se deberia hacer con un post de Ajax. Al fin y al cabo no queremos refrescar la pagina
+    $('#submitAdd').click(function () {
+
+        var table = $("#tableVoluntariosAdd").DataTable();
+        var selectedRows = table.column(0).checkboxes.selected();
+        let selectedRowsText = "";
+
+        if (selectedRows.length > 0) {
+            selectedRowsText = @Model.Campeonato.IdCampeonato + ";";
+            for (let i = 0; i < selectedRows.length; i++) {
+                selectedRowsText += selectedRows[i] + ";";
+            }
+        }
+
+        if (selectedRowsText != "") {
+            $("#listIdsVoluntariosAdd").val(selectedRowsText);
+            $("#formAddVoluntarios").submit();
+        }
+
+    });
+
+    $('#submitDelete').click(function () {
+
+        var table = $("#tableVoluntariosDelete").DataTable();
+        var selectedRows = table.column(0).checkboxes.selected();
+        let selectedRowsText = "";
+
+        for (let i = 0; i < selectedRows.length; i++) {
+            selectedRowsText += selectedRows[i] + ";";
+        }
+
+        if (selectedRowsText != "") {
+            $("#listIdsVoluntariosDelete").val(selectedRowsText);
+            $("#formDeleteVoluntarios").submit();
+        }
+
+    });
+
+
+</script>

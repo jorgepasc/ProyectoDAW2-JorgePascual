@@ -1,0 +1,186 @@
+﻿@model SpecialOlympics.Models.ViewModels.Voluntarios.VoluntarioCreateViewModel
+
+@{
+    ViewData["Title"] = "Crear voluntario";
+}
+<h1>Crear nuevo Voluntario</h1>
+
+<h4>Voluntario</h4>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="card">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-row">
+                        @* TODO: Setear la ruta UsuarioDefault.png como DefaultValue al crear usuario sin foto *@
+                        <img id="foto" src="../../images/UsuarioDefault.png" alt="Foto de perfil" class="col-sm-5 col-lg-4 img-fluid img-thumbnail" />
+                        <input id="inputFoto" asp-for="Foto" accept="image/*" class="form-control col-md-12" type="file" />
+                        <span asp-validation-for="Foto" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="card">
+                    <h5 class="card-header bg-danger" role="tab" id="headingOne">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="d-block collapsableLink">
+                            Datos personales <i class="fa fa-chevron-up pull-right float-right"></i>
+                        </a>
+                    </h5>
+
+                    <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group col-md-4 col-sm-6">
+                                    <label asp-for="Voluntario.Nombre" class="control-label"></label>
+                                    <input asp-for="Voluntario.Nombre" class="form-control" />
+                                    <span asp-validation-for="Voluntario.Nombre" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-4 col-sm-6">
+                                    <label asp-for="Voluntario.Apellido1" class="control-label"></label>
+                                    <input asp-for="Voluntario.Apellido1" class="form-control" />
+                                    <span asp-validation-for="Voluntario.Apellido1" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-4 col-sm-12">
+                                    <label asp-for="Voluntario.Apellido2" class="control-label"></label>
+                                    <input asp-for="Voluntario.Apellido2" class="form-control" />
+                                    <span asp-validation-for="Voluntario.Apellido2" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4 col-sm-6">
+                                    <label asp-for="Voluntario.DNI" class="control-label"></label>
+                                    <input asp-for="Voluntario.DNI" class="form-control" />
+                                    <span asp-validation-for="Voluntario.DNI" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-4 col-sm-6">
+                                    <label asp-for="Voluntario.Telefono1" class="control-label"></label>
+                                    <input asp-for="Voluntario.Telefono1" class="form-control" />
+                                    <span asp-validation-for="Voluntario.Telefono1" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-4 col-sm-6">
+                                    <label asp-for="Voluntario.FechaNacimiento" class="control-label"></label>
+                                    <input asp-for="Voluntario.FechaNacimiento" class="form-control" />
+                                    <span asp-validation-for="Voluntario.FechaNacimiento" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Voluntario.Email" class="control-label"></label>
+                                <input asp-for="Voluntario.Email" class="form-control" />
+                                <span asp-validation-for="Voluntario.Email" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h5 class="card-header bg-danger" role="tab" id="headingTwo">
+                        <a class="d-block collapsableLink" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Dirección<i class="fa fa-chevron-up pull-right float-right"></i>
+                        </a>
+                    </h5>
+                    <div id="collapseTwo" class="collapse show" role="tabpanel" aria-labelledby="headingTwo">
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group col-md-12 col-sm-12">
+                                    <label asp-for="Voluntario.DireccionCompleta" class="control-label"></label>
+                                    <input asp-for="Voluntario.DireccionCompleta" class="form-control" />
+                                    <span asp-validation-for="Voluntario.DireccionCompleta" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4 col-sm-12">
+                                    <label asp-for="Voluntario.Poblacion" class="control-label"></label>
+                                    <input asp-for="Voluntario.Poblacion" class="form-control" />
+                                    <span asp-validation-for="Voluntario.Poblacion" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-4 col-sm-6">
+                                    <label asp-for="Voluntario.Provincia" class="control-label"></label>
+                                    <input asp-for="Voluntario.Provincia" class="form-control" />
+                                    <span asp-validation-for="Voluntario.Provincia" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-4 col-sm-6">
+                                    <label asp-for="Voluntario.CodigoPostal" class="control-label"></label>
+                                    <input asp-for="Voluntario.CodigoPostal" class="form-control" />
+                                    <span asp-validation-for="Voluntario.CodigoPostal" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h5 class="card-header bg-danger" role="tab" id="headingThree">
+                        <a class="d-block collapsableLink" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Otros datos <i class="fa fa-chevron-up pull-right float-right"></i>
+                        </a>
+                    </h5>
+                    <div id="collapseThree" class="collapse show" role="tabpanel" aria-labelledby="headingThree">
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group col-md-4 col-sm-12">
+                                    <label asp-for="Voluntario.Telefono2" class="control-label"></label>
+                                    <input asp-for="Voluntario.Telefono2" class="form-control" />
+                                    <span asp-validation-for="Voluntario.Telefono2" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-4 col-sm-6">
+                                    <label asp-for="Voluntario.FechaAlta" class="control-label"></label>
+                                    <input asp-for="Voluntario.FechaAlta" class="form-control" />
+                                    <span asp-validation-for="Voluntario.FechaAlta" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-4 col-sm-12">
+                                    <label asp-for="Voluntario.TelefonoEmergencia" class="control-label"></label>
+                                    <input asp-for="Voluntario.TelefonoEmergencia" class="form-control" />
+                                    <span asp-validation-for="Voluntario.TelefonoEmergencia" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-check">
+                                <input asp-for="Voluntario.IsAlergico" class="form-check-input" />
+                                <label asp-for="Voluntario.IsAlergico" class="form-check-label"></label>
+                                <span asp-validation-for="Voluntario.IsAlergico" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Voluntario.DescripcionAlergias" class="control-label"></label>
+                                <textarea asp-for="Voluntario.DescripcionAlergias" class="form-control"></textarea>
+                                <span asp-validation-for="Voluntario.DescripcionAlergias" class="text-danger"></span>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" asp-for="Voluntario.IsActivo" />
+                                <label asp-for="Voluntario.IsActivo" class="form-check-label"></label>
+                                <span asp-validation-for="Voluntario.IsActivo" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Voluntario.Observaciones" class="control-label"></label>
+                                <textarea asp-for="Voluntario.Observaciones" class="form-control"></textarea>
+                                <span asp-validation-for="Voluntario.Observaciones" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h5 class="card-header bg-danger" role="tab" id="headingFour">
+                        <a class="d-block collapsableLink" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            Documentos <i class="fa fa-chevron-up pull-right float-right"></i>
+                        </a>
+                    </h5>
+                    <div id="collapseFour" class="collapse show" role="tabpanel" aria-labelledby="headingFour">
+                        <div class="card-body">
+                            <div class="form-row">
+                                <input id="inputDocumento" accept="application/pdf" asp-for="Documento1" class="form-control col-md-12" type="file" />
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-primary" asp-action="Index">Volver</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

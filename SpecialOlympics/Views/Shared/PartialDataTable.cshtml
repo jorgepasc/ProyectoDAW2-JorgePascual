@@ -1,0 +1,117 @@
+﻿
+@{await Html.RenderPartialAsync("_DataTableScriptsPartial");}
+
+<script>
+    $(document).ready(function () {
+        $(".partialDataTable").DataTable(
+            {
+                bLengthChange: true,
+                lengthMenu: [[5, 10, -1], [5, 10, "Todos"]],
+                bFilter: true,
+                bSort: true,
+                bPaginate: true,
+                buttons: [
+                    //{
+                    //    extend: 'excel',                        
+                    //    exportOptions: {
+                    //        modifier: {
+                    //            //columns: ':visible'
+                    //            //selected: true
+                    //            columns: 2,
+                    //            title: 'Titulo'
+                    //        }
+                    //    }
+                    //},
+                    { name: 'excel', extend: 'excelHtml5', exportOptions: {columns: ':visible', selected: true}},
+
+
+                    {
+                        text: 'Visibilidad columnas',
+                        extend: 'colvis',
+                        collectionLayout: 'fixed three-column'
+                    }
+                ],
+                dom: '<"rightDistance"l><"float-left leftPadding"f>r<"float-right"B>tip',
+                /*TODO: Corregir scrolls y responsive de datataables*/
+                order: [[1, 'asc']],
+                language: {
+                    url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+                },
+                initComplete: function () {
+                    $('.buttons-excel').html('<i class="fas fa-download"/>');
+                }
+            });
+
+        $(".partialDataTableCheckbox").DataTable(
+            {
+                bLengthChange: true,
+                lengthMenu: [[5, 10, -1], [5, 10, "Todos"]],
+                bFilter: true,
+                bSort: true,
+                bPaginate: true,
+                columnDefs: [
+                    {
+                        targets: 0,
+                        checkboxes: {
+                            selectRow: true
+                        }
+                    }
+                ],
+                buttons: [
+                    //{
+                    //    extend: 'excel',                        
+                    //    exportOptions: {
+                    //        modifier: {
+                    //            //columns: ':visible'
+                    //            //selected: true
+                    //            columns: 2,
+                    //            title: 'Titulo'
+                    //        }
+                    //    }
+                    //},
+                    { name: 'excel', extend: 'excelHtml5', exportOptions: { columns: ':visible'} },
+
+
+                    {
+                        text: 'Visibilidad columnas',
+                        extend: 'colvis',
+                        collectionLayout: 'fixed two-column'
+                    }
+                ],
+                dom: '<"rightDistance"l><"float-left leftPadding"f>r<"float-right"B>tip',
+                select: {
+                    style: 'multi'
+                },
+                order: [[1, 'asc']],
+                language: {
+                    url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+                },
+                initComplete: function () {
+                    $('.buttons-excel').html('<i class="fas fa-download"/>');
+                }
+            });
+
+        $(".testDataTable").DataTable(
+            {
+                bLengthChange: true,
+                lengthMenu: [[5, 10, -1], [5, 10, "Todos"]],
+                bFilter: true,
+                bSort: true,
+                bPaginate: true,
+                /*TODO: COrregir scrolls y responsive de datataables*/
+                order: [[1, 'asc']],
+                buttons: [
+                    'excel', 'pdf', 'print'
+                ],
+                dom: 'Bfrtip',
+                language: {
+                    url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+                }
+            });
+    /* Se puede añadir aqui un if (window).Size < 1000 no mostrar fixedHeaders pero pa eso no poner*/
+
+
+    });
+
+
+</script>

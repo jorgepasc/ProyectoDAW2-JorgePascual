@@ -1,0 +1,60 @@
+﻿@model IEnumerable<SpecialOlympics.Models.Entrenamiento>
+
+@{
+    ViewData["Title"] = "Entrenamientos";
+}
+
+<h1>Lista de Entrenamientos</h1>
+
+<p>
+    <a class="btn btn-info" asp-action="Create">Nuevo entrenamiento</a>
+</p>
+
+<div style="overflow-x: auto;">
+    <table class="table table-striped table-bordered partialDataTable">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Ubicacion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FechaInicio)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Observaciones)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Ubicacion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaInicio)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Observaciones)
+                    </td>
+                    <td>
+                        <a class="icon iconInfo" asp-action="Edit" asp-route-id="@item.IdEntrenamiento"><i class="fas fa-pen-square"></i></a>
+                        <a class="icon iconDanger" asp-action="Delete" asp-route-id="@item.IdEntrenamiento"><i class="fas fa-minus-square"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("PartialDataTable");}
+}

@@ -1,0 +1,316 @@
+﻿@using SpecialOlympics.Models.ViewModels.Voluntarios
+@model VoluntarioEditViewModel
+
+@{
+    ViewData["Title"] = "Editar Voluntario";
+    //string imgSrc = Model.Voluntario.Foto is null ? @"../../images/UsuarioDefault.png" : $"data:image/png;base64,{Convert.ToBase64String(Model.Voluntario.Foto)}";
+
+}
+
+<h1>Editar</h1>
+
+<h4>Voluntarios</h4>
+<hr />
+<div class="col-md-12">
+    <form asp-action="Edit" enctype="multipart/form-data">
+        <div id="accordion" role="tablist" aria-multiselectable="true">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Voluntario.IdVoluntario" />
+            <div class="card">
+                <div class="form-row">
+                    <input accept="application/pdf" asp-for="Voluntario.ProfileImagePath" type="hidden" />
+                    <img id="foto" src="~/images/@Model.Voluntario.ProfileImagePath" alt="Foto de perfil" class="col-sm-5 col-lg-4 img-fluid img-thumbnail" />
+                    <input id="inputFoto" accept="image/*" asp-for="Foto" class="form-control col-md-12" type="file" />
+                    <span asp-validation-for="Foto" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="card-header bg-danger" role="tab" id="headingOne">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="d-block collapsableLink">
+                        Datos personales <i class="fa fa-chevron-up pull-right float-right"></i>
+                    </a>
+                </h5>
+
+                <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="card-body">
+                        <div class="form-row">
+                            <div class="form-group col-md-4 col-sm-6">
+                                <label asp-for="Voluntario.Nombre" class="control-label"></label>
+                                <input asp-for="Voluntario.Nombre" class="form-control" />
+                                <span asp-validation-for="Voluntario.Nombre" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-4 col-sm-6">
+                                <label asp-for="Voluntario.Apellido1" class="control-label"></label>
+                                <input asp-for="Voluntario.Apellido1" class="form-control" />
+                                <span asp-validation-for="Voluntario.Apellido1" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-4 col-sm-12">
+                                <label asp-for="Voluntario.Apellido2" class="control-label"></label>
+                                <input asp-for="Voluntario.Apellido2" class="form-control" />
+                                <span asp-validation-for="Voluntario.Apellido2" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4 col-sm-6">
+                                <label asp-for="Voluntario.DNI" class="control-label"></label>
+                                <input asp-for="Voluntario.DNI" class="form-control" />
+                                <span asp-validation-for="Voluntario.DNI" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-4 col-sm-6">
+                                <label asp-for="Voluntario.Telefono1" class="control-label"></label>
+                                <input asp-for="Voluntario.Telefono1" class="form-control" />
+                                <span asp-validation-for="Voluntario.Telefono1" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-4 col-sm-6">
+                                <label asp-for="Voluntario.FechaNacimiento" class="control-label"></label>
+                                <input asp-for="Voluntario.FechaNacimiento" class="form-control" />
+                                <span asp-validation-for="Voluntario.FechaNacimiento" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-12 col-sm-12">
+                                <label asp-for="Voluntario.Email" class="control-label"></label>
+                                <input asp-for="Voluntario.Email" class="form-control" />
+                                <span asp-validation-for="Voluntario.Email" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="card-header bg-danger" role="tab" id="headingTwo">
+                    <a class="d-block collapsableLink" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Dirección<i class="fa fa-chevron-up pull-right float-right"></i>
+                    </a>
+                </h5>
+                <div id="collapseTwo" class="collapse show" role="tabpanel" aria-labelledby="headingTwo">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label asp-for="Voluntario.DireccionCompleta" class="control-label"></label>
+                            <input asp-for="Voluntario.DireccionCompleta" class="form-control" />
+                            <span asp-validation-for="Voluntario.DireccionCompleta" class="text-danger"></span>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4 col-sm-12">
+                                <label asp-for="Voluntario.Poblacion" class="control-label"></label>
+                                <input asp-for="Voluntario.Poblacion" class="form-control" />
+                                <span asp-validation-for="Voluntario.Poblacion" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-4 col-sm-6">
+                                <label asp-for="Voluntario.Provincia" class="control-label"></label>
+                                <input asp-for="Voluntario.Provincia" class="form-control" />
+                                <span asp-validation-for="Voluntario.Provincia" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-4 col-sm-6">
+                                <label asp-for="Voluntario.CodigoPostal" class="control-label"></label>
+                                <input asp-for="Voluntario.CodigoPostal" class="form-control" />
+                                <span asp-validation-for="Voluntario.CodigoPostal" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="card-header bg-danger" role="tab" id="headingThree">
+                    <a class="d-block collapsableLink" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Otros datos <i class="fa fa-chevron-up pull-right float-right"></i>
+                    </a>
+                </h5>
+                <div id="collapseThree" class="collapse show" role="tabpanel" aria-labelledby="headingThree">
+                    <div class="card-body">
+                        <div class="form-row">
+                            <div class="form-group col-md-4 col-sm-12">
+                                <label asp-for="Voluntario.Telefono2" class="control-label"></label>
+                                <input asp-for="Voluntario.Telefono2" class="form-control" />
+                                <span asp-validation-for="Voluntario.Telefono2" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-4 col-sm-6">
+                                <label asp-for="Voluntario.FechaAlta" class="control-label"></label>
+                                <input asp-for="Voluntario.FechaAlta" class="form-control" />
+                                <span asp-validation-for="Voluntario.FechaAlta" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-4 col-sm-12">
+                                <label asp-for="Voluntario.TelefonoEmergencia" class="control-label"></label>
+                                <input asp-for="Voluntario.TelefonoEmergencia" class="form-control" />
+                                <span asp-validation-for="Voluntario.TelefonoEmergencia" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-check">
+                            <input asp-for="Voluntario.IsAlergico" class="form-check-input" />
+                            <label asp-for="Voluntario.IsAlergico" class="form-check-label"></label>
+                            <span asp-validation-for="Voluntario.IsAlergico" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Voluntario.DescripcionAlergias" class="control-label"></label>
+                            <textarea asp-for="Voluntario.DescripcionAlergias" class="form-control"></textarea>
+                            <span asp-validation-for="Voluntario.DescripcionAlergias" class="text-danger"></span>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" asp-for="Voluntario.IsActivo" />
+                            <label asp-for="Voluntario.IsActivo" class="form-check-label"></label>
+                            <span asp-validation-for="Voluntario.IsActivo" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Voluntario.Observaciones" class="control-label"></label>
+                            <textarea asp-for="Voluntario.Observaciones" class="form-control"></textarea>
+                            <span asp-validation-for="Voluntario.Observaciones" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="card-header bg-danger" role="tab" id="headingFour">
+                    <a class="d-block collapsableLink" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        Documentos <i class="fa fa-chevron-up pull-right float-right"></i>
+                    </a>
+                </h5>
+                <div id="collapseFour" class="collapse show" role="tabpanel" aria-labelledby="headingFour">
+                    <div class="card-body">
+                        <div class="form-row">
+                            @if (!string.IsNullOrEmpty(Model.Voluntario.RutaDocumento1))
+                            {
+                                <div class="form-row">
+                                    <input accept="application/pdf" asp-for="Voluntario.RutaDocumento1" type="hidden" />
+                                    <img style="max-width: 3em;" src="~/images/PDFIcon.png" class="img-fluid img-thumbnail" alt="PDF" />
+                                    <a class="col-md-10" href="~/Uploads/@Model.Voluntario.RutaDocumento1" target="_blank">@Model.Voluntario.RutaDocumento1.Substring(8, Model.Voluntario.RutaDocumento1.Length - 8)</a>
+                                </div>
+                            }
+                            <input id="inputDocumento" accept="application/pdf" asp-for="Documento1" class="form-control col-md-12" type="file" />
+                            <span asp-validation-for="Documento1" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="card-header bg-danger" role="tab" id="headingFive">
+                    <a class="d-block collapsableLink" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        Entrenamientos <i class="fa fa-chevron-up pull-right float-right"></i>
+                    </a>
+                </h5>
+                <div id="collapseFive" class="collapse show" role="tabpanel" aria-labelledby="headingFive">
+                    <div class="card-body">
+                        <div style="overflow-x: auto;">
+                            <table class="table table-striped table-bordered dt-responsive partialDataTable">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => Model.EntrenamientosFromVoluntario[0].Nombre)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => Model.EntrenamientosFromVoluntario[0].FechaInicio)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => Model.EntrenamientosFromVoluntario[0].Funcion)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => Model.EntrenamientosFromVoluntario[0].Ubicacion)
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var entrenamiento in Model.EntrenamientosFromVoluntario)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(model => entrenamiento.Nombre)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(model => entrenamiento.FechaInicio)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(model => entrenamiento.Funcion)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(model => entrenamiento.Ubicacion)
+                                            </td>
+                                            <td>
+                                                <a class="icon iconInfo" asp-controller="Entrenamientos" asp-action="Edit" asp-route-id="@entrenamiento.IdEntrenamiento"><i class="fas fa-pen-square"></i></a>
+                                                @*<a asp-controller="Entrenamientos" asp-action="Details" asp-route-id="@entrenamiento.IdEntrenamiento">Details</a>*@
+                                                <a class="icon iconDanger" asp-controller="Entrenamientos" asp-action="Delete" asp-route-id="@entrenamiento.IdEntrenamiento"><i class="fas fa-minus-square"></i></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="card-header bg-danger" role="tab" id="headingSix">
+                    <a class="d-block collapsableLink" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                        Campeonatos <i class="fa fa-chevron-up pull-right float-right"></i> 
+                        @*TODO: Decidir como dejamos la orientación de la flechita (Desde la dirección de inicio hasta la animación 90deg vs 180)*@
+                    </a>
+                </h5>
+                <div id="collapseSix" class="collapse show" role="tabpanel" aria-labelledby="headingSix">
+                    <div class="card-body">
+                        <div style="overflow-x: auto;">
+                            <table class="table table-striped table-bordered dt-responsive partialDataTable">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => Model.CampeonatosFromVoluntario[0].Nombre)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => Model.CampeonatosFromVoluntario[0].FechaInicio)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => Model.CampeonatosFromVoluntario[0].FechaFin)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => Model.CampeonatosFromVoluntario[0].Funcion)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => Model.CampeonatosFromVoluntario[0].Ubicacion)
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var campeonato in Model.CampeonatosFromVoluntario)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(model => campeonato.Nombre)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(model => campeonato.FechaInicio)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(model => campeonato.FechaFin)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(model => campeonato.Funcion)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(model => campeonato.Ubicacion)
+                                            </td>
+                                            <td>
+                                                <a class="icon iconInfo" asp-controller="Campeonatos" asp-action="Edit" asp-route-id="@campeonato.IdCampeonato"><i class="fas fa-pen-square"></i></a>
+                                                @*<a asp-controller="Campeonatos" asp-action="Details" asp-route-id="@campeonato.IdCampeonato">Details</a>*@
+                                                <a class="icon iconDanger" asp-controller="Campeonatos" asp-action="Delete" asp-route-id="@campeonato.IdCampeonato"><i class="fas fa-minus-square"></i></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+            <input type="submit" value="Guardar" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+<br />
+<div>
+    <a class="btn btn-primary" asp-action="Index">Volver</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{await Html.RenderPartialAsync("PartialDataTable");}
+}
